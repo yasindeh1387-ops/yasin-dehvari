@@ -1,39 +1,98 @@
 <!DOCTYPE html>
 <html lang="fa">
 <head>
-  <meta charset="UTF-8">
-  <title>AutoBot AI</title>
-  <style>
-    body {
-      font-family: Tahoma, Arial;
-      background: #0f172a;
-      color: white;
-      text-align: center;
-      padding-top: 80px;
-    }
-    h1 {
-      font-size: 40px;
-      margin-bottom: 10px;
-    }
-    p {
-      font-size: 18px;
-      opacity: 0.9;
-    }
-    .box {
-      background: #1e293b;
-      display: inline-block;
-      padding: 30px;
-      border-radius: 15px;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AutoBot AI</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #1a202c;
+            color: white;
+        }
+        .container {
+            margin-top: 50px;
+        }
+        button {
+            padding: 15px 30px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            font-size: 18px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
 </head>
 <body>
 
-  <div class="box">
-    <h1>🤖 AutoBot AI</h1>
-    <p>تبدیل ماشین به اتوبات با هوش مصنوعی 🚗➡️🤖</p>
-    <p>به سایت رسمی یاسین خوش اومدی 👋</p>
-  </div>
+    <!-- صفحه خوش‌آمدگویی -->
+    <div class="container">
+        <h1>به سایت رسمی AutoBot AI خوش آمدید 👋</h1>
+        <p>برای شروع ثبت نام کنید!</p>
+        <button id="registerButton">ثبت نام</button>
+    </div>
+
+    <!-- صفحه ثبت نام -->
+    <div id="registrationPage" style="display:none;">
+        <h1>ثبت نام</h1>
+        <p>لطفا نام و اطلاعات خود را وارد کنید.</p>
+        <input type="text" id="name" placeholder="نام خود را وارد کنید" style="padding: 10px; font-size: 18px;">
+        <br><br>
+        <button onclick="startChoosing()">شروع</button>
+    </div>
+
+    <!-- صفحه انتخاب اتوبات -->
+    <div id="autobotPage" style="display:none;">
+        <h1>انتخاب اتوبات</h1>
+        <p>کدام اتوبات را می‌خواهید انتخاب کنید؟</p>
+        <button onclick="chooseAutobot('Optimus Prime')">Optimus Prime</button>
+        <button onclick="chooseAutobot('Bumblebee')">Bumblebee</button>
+        <button onclick="chooseAutobot('Megatron')">Megatron</button>
+    </div>
+
+    <!-- صفحه نمایش نتیجه -->
+    <div id="resultPage" style="display:none;">
+        <h1>انتخاب شما:</h1>
+        <p id="chosenAutobot"></p>
+        <button onclick="backToHome()">بازگشت به صفحه اصلی</button>
+    </div>
+
+    <script>
+        // فعال سازی ثبت نام
+        document.getElementById('registerButton').onclick = function() {
+            document.querySelector('.container').style.display = 'none';
+            document.getElementById('registrationPage').style.display = 'block';
+        };
+
+        // شروع انتخاب اتوبات
+        function startChoosing() {
+            var name = document.getElementById('name').value;
+            if (name) {
+                document.getElementById('registrationPage').style.display = 'none';
+                document.getElementById('autobotPage').style.display = 'block';
+            } else {
+                alert("لطفا نام خود را وارد کنید.");
+            }
+        }
+
+        // انتخاب اتوبات
+        function chooseAutobot(autobot) {
+            document.getElementById('autobotPage').style.display = 'none';
+            document.getElementById('resultPage').style.display = 'block';
+            document.getElementById('chosenAutobot').innerHTML = 'شما انتخاب کردید: ' + autobot;
+        }
+
+        // بازگشت به صفحه اصلی
+        function backToHome() {
+            document.getElementById('resultPage').style.display = 'none';
+            document.querySelector('.container').style.display = 'block';
+        }
+    </script>
 
 </body>
 </html>
